@@ -17,6 +17,7 @@
 ![teaser](assets/teaser.gif)
 
 ## 📰 News
+- [PromptDA++](assets/paper.pdf) paper is available. Code and models will be released, please stay tuned.
 - Releasing [ScanNet++ ZipNeRF Reconstruction Depth Results](https://huggingface.co/datasets/haotongl/scannetpp_zipnerf/tree/main)
 
 
