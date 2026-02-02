@@ -122,7 +122,7 @@ def load_scannetpp(args):
     os.makedirs(path_out, exist_ok=True)
 
     color, frame_count = extract_color_from_video(path_color)
-    depth = extract_depth_scannetpp(path_depth)  
+    depth = extract_depth_scannetpp(path_depth) 
 
     return path_out, frame_count, color, depth
 
@@ -151,6 +151,12 @@ if __name__ == "__main__":
 
     if path_out is None or frame_count is None or color is None or depth is None:
         raise RuntimeError("Unreachable!")
+    
+    with os.scandir(path_out) as entries:
+        frame_count_out = sum(1 for entry in entries if entry.is_file())
+        if abs(frame_count_out - frame_count) < 2:
+            print("Upscaled depth imagery found. Skipping depth inference")
+            exit(0)
     
     print(f"Detected {frame_count} frames from {clargs.loader} scene: {clargs.path_scene}")
     
